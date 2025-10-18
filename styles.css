@@ -1,0 +1,32 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: 'Courier New', Courier, monospace;
+    background-image: url(./images/japan.png);
+    background-color: rgb(58, 23, 31);
+    color: antiquewhite;
+}
+
+
+::backdrop {
+    background-image: url("./images/japan.png");
+    background-size: 105% 100%;
+}
+
+h1{
+    font-size: 18vh;
+    text-shadow: 8px 8px 15px #000;
+}
