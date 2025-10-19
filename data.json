@@ -1,5 +1,8 @@
 [
-    {"Sections" : [
-        
-    ]}
+    {"sections" : 
+            {
+                "section" : "Liquor Overstock",
+                "photo" : "liquorOverstock"
+            }
+    }
 ]
