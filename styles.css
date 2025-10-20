@@ -41,15 +41,11 @@ body{
     border: 1px solid red;
 } */
 
-#navDiv{
+.nav-divs{
+    padding: 1.5vh 0;
     width: 100%;
-    height: 14%;
+    height: fit-content;
     display: flex;
-}
-
-#menuButton{
-    position: fixed;
-    z-index: 1;
 }
 
 #titleDiv{
@@ -57,13 +53,13 @@ body{
     justify-content: center;
     align-items: center;
     width: 100%;
-    font-size: 4vh;
+    font-size: 3vh;
     text-shadow: 8px 8px 15px #000;
 }
 
 #mainContainer{
     width: 100%;
-    height: 85%;
+    height: 74%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,10 +67,30 @@ body{
 
 img{
     max-width: 100%;
-    max-height: 85%;
+    max-height: 88%;
     border: 8px outset rgb(227, 191, 127);
     border-radius: 40px;
     box-shadow: 8px 8px 35px #000;
+}
+
+#bottomDiv {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 0;
+    z-index: 1000;
+}
+
+
+#menuButton{
+    height: 10vh;
+    max-width: none;
+    width: 90%;
+    border-radius: 20px;
 }
 
 
