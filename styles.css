@@ -1,7 +1,14 @@
 *{
     margin: 0%;
     padding: 0%;
+    box-sizing: border-box;
+    scrollbar-width: none;     /* Firefox */
+    -ms-overflow-style: none;  /* IE/Edge */
 }
+
+*::-webkit-scrollbar {
+    display: none;
+  }
 
 html{
     height: 100%;
@@ -11,7 +18,7 @@ body{
     width: 100%;
     height: 100%;
     font-family: 'Courier New', Courier, monospace;
-    background-image: url(./images/japan.png);
+    background-image: url(./images/japan.jpeg);
     background-color: rgb(58, 23, 31);
     color: antiquewhite;
 }
@@ -31,8 +38,8 @@ body{
 }
 
 .section-buttons{
-    max-height: fit-content;
-    padding: 3.5vh;
+    height: 215w;
+    aspect-ratio: 2 / 1;
     border-radius: 40px;
 }
 
@@ -59,14 +66,16 @@ body{
 
 #mainContainer{
     width: 100%;
-    height: 74%;
+    height: 75%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    overflow: auto;
 }
 
 img{
-    max-width: 100%;
+    max-width: 95%;
     max-height: 88%;
     border: 8px outset rgb(227, 191, 127);
     border-radius: 40px;
@@ -74,6 +83,7 @@ img{
 }
 
 #bottomDiv {
+    border-top: 5px outset rgb(227, 191, 127);
     position: fixed;
     bottom: 0;
     left: 0;
@@ -83,6 +93,7 @@ img{
     align-items: center;
     padding: 1vh 0;
     z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.581);
 }
 
 
@@ -92,32 +103,6 @@ img{
     width: 90%;
     border-radius: 20px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

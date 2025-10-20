@@ -1,8 +1,59 @@
 [
     {"sections" : 
+        [
             {
                 "section" : "Liquor Overstock",
                 "photo" : "liquorOverstock"
+            },
+            {
+                "section" : "Bar Well (Closed)",
+                "photo" : "barWellClosed"
+            },
+            {
+                "section" : "Equipment (Closed)",
+                "photo" : "equipmentClosed"
+            },
+            {
+                "section" : "Full Bar (Complete)",
+                "photo" : "fullBarComplete"
+            },
+            {
+                "section" : "North Wine Cooler (Closed)",
+                "photo" : "northWineCooler"
+            },
+            {
+                "section" : "Service Well (Closed)",
+                "photo" : "serviceWellClosed"
+            },
+            {
+                "section" : "Washer (Closed)",
+                "photo" : "washerClosed"
+            },
+            {
+                "section" : "Keg Cooler (Closed)",
+                "photo" : "kegCoolerClosed"
+            },
+            {
+                "section" : "Lamps (Closed)",
+                "photo" : "lampsClosed"
+            },
+            {
+                "section" : "Service Well Stock (Closed)",
+                "photo" : "serviceWellStockClosed"
+            },
+            {
+                "section" : "Service Well Step One",
+                "photo" : "serviceWellStepOne"
+            },
+            {
+                "section" : "Bar Well Step One",
+                "photo" : "barWellStepOne"
+            },
+            {
+                "section" : "Service Well Stock",
+                "photo" : "serviceWellStock"
             }
+
+        ]
     }
 ]
