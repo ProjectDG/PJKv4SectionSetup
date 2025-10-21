@@ -2,56 +2,64 @@
     {"sections" : 
         [
             {
-                "section" : "Liquor Overstock",
-                "photo" : "liquorOverstock"
+                "section" : "Liquor Overstock"
             },
             {
-                "section" : "Bar Well (Closed)",
-                "photo" : "barWellClosed"
+                "section" : "Bar Well (Closed)"
             },
             {
-                "section" : "Equipment (Closed)",
-                "photo" : "equipmentClosed"
+                "section" : "Equipment (Closed)"
             },
             {
-                "section" : "Full Bar (Complete)",
-                "photo" : "fullBarComplete"
+                "section" : "Full Bar (Complete)"
             },
             {
-                "section" : "North Wine Cooler (Closed)",
-                "photo" : "northWineCooler"
+                "section" : "North Wine Cooler (Closed)"
             },
             {
-                "section" : "Service Well (Closed)",
-                "photo" : "serviceWellClosed"
+                "section" : "Service Well (Closed)"
             },
             {
-                "section" : "Washer (Closed)",
-                "photo" : "washerClosed"
+                "section" : "Washer (Closed)"
             },
             {
-                "section" : "Keg Cooler (Closed)",
-                "photo" : "kegCoolerClosed"
+                "section" : "Keg Cooler (Closed)"
             },
             {
-                "section" : "Lamps (Closed)",
-                "photo" : "lampsClosed"
+                "section" : "Lamps (Closed)"
             },
             {
-                "section" : "Service Well Stock (Closed)",
-                "photo" : "serviceWellStockClosed"
+                "section" : "Service Well Stock (Closed)"
             },
             {
-                "section" : "Service Well Step One",
-                "photo" : "serviceWellStepOne"
+                "section" : "Service Well Step 1"
             },
             {
-                "section" : "Bar Well Step One",
-                "photo" : "barWellStepOne"
+                "section" : "Bar Well Step 1"
             },
             {
-                "section" : "Service Well Stock",
-                "photo" : "serviceWellStock"
+                "section" : "Service Well Stock"
+            },
+            {
+                "section" : "Service Well Step 2"
+            },
+            {
+                "section" : "Service Well Plants"
+            },
+            {
+                "section" : "Place Settings"
+            },
+            {
+                "section" : "To Go Station"
+            },
+            {
+                "section" : "Service Well Complete"
+            },
+            {
+                "section" : "Washer Mat Setup"
+            },
+            {
+                "section" : "Beer Cooler"
             }
 
         ]

@@ -43,7 +43,7 @@ fetch('data.json')
       // Initial title and image
       d3.select("#titleDiv").append("h1").attr("id", "Title").text("PJK Neighborhood Chinese");
       d3.select("#mainContainer").append("img")
-        .attr("src", "./images/fullBarComplete.jpeg")
+        .attr("src", "./images/fullBarComplete.jpg")
         .attr("alt", "PJK Neighborhood Chinese")
         .attr("id", "fullBar");
     };
@@ -76,7 +76,7 @@ fetch('data.json')
         d3.select("#titleDiv").append("h1").attr("id", "Title").text(title);
         d3.select("#mainContainer")
           .append("img")
-          .attr("src", `./images/${image}.jpeg`)
+          .attr("src", `./images/${image}.jpg`)
           .attr("alt", title);
       });
     });
