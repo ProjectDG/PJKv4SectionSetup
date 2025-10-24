@@ -1,85 +1,159 @@
-console.log("%c ------------ Welcome to PJK Section Setup ------------", "color: yellow;");
+console.log("%c ------------ PJK Section Thumbnails (Dynamic Scaling) ------------", "color: yellow;");
 
-fetch('data.json')
-  .then(response => {
-    if (!response.ok) throw new Error('Network response was not ok');
-    return response.json();
+fetch("data.json")
+  .then(res => {
+    if (!res.ok) throw new Error("Network error");
+    return res.json();
   })
   .then(data => {
+    const groupsArr = data[0].groups;
 
-    let sectionArr = data[0].sections;
+    const toCamelCase = str =>
+      str
+        .replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase())
+        .replace(/[^a-zA-Z0-9]/g, "")
+        .replace(/^(.)/, c => c.toLowerCase());
 
-    // Sort once upfront
-    sectionArr.sort((a, b) => a.section.localeCompare(b.section, undefined, { sensitivity: 'base' }));
+    const sortedGroups = groupsArr.filter(g => g.name !== "Open Bar" && g.name !== "Close Bar")
+                                  .sort((a,b) => a.name.localeCompare(b.name));
 
-    // Utility: clear title + main container
-    const reset = () => {
+    const resetMain = () => d3.select("#mainContainer").selectAll("*").remove();
+    const resetAll = () => {
       d3.select("#titleDiv").selectAll("*").remove();
-      d3.select("#mainContainer").selectAll("*").remove();
+      resetMain();
     };
 
-    // Utility: convert to camelCase
-    const toCamelCase = str => {
-      if (typeof str !== 'string') return '';
-      const parts = str
-        .trim()
-        .replace(/[_\-]+/g, ' ')
-        .split(/[^A-Za-z0-9]+/)
-        .filter(Boolean);
-      if (!parts.length) return '';
-      const first = /[A-Z]/.test(parts[0].slice(1)) ? parts[0] : parts[0].toLowerCase();
-      const rest = parts.slice(1).map(p => p.charAt(0).toUpperCase() + p.slice(1).toLowerCase());
-      return [first, ...rest].join('');
-    };
+    let currentSections = [];
+    let currentIndex = 0;
 
-    // Setup layout
+    // Build layout
     const buildLayout = () => {
-      d3.select("body").append("div").attr("id", "navDiv").attr("class", "setup nav-divs");
-      d3.select("#navDiv").append("div").attr("id", "titleDiv").attr("class", "setup");
-      d3.select("body").append("div").attr("id", "mainContainer").attr("class", "setup");
-      d3.select("body").append("div").attr("id", "bottomDiv").attr("class", "setup nav-divs");
-      d3.select("#bottomDiv").append("button").attr("class", "buttons").attr("id", "menuButton").text("Sections");
+      d3.select("body").append("div").attr("id", "navDiv");
+      d3.select("body").append("div").attr("id", "titleDiv");
+      d3.select("body").append("div").attr("id", "mainContainer");
+      d3.select("body").append("div").attr("id", "bottomNav");
 
-      // Initial title and image
-      d3.select("#titleDiv").append("h1").attr("id", "Title").text("PJK Neighborhood Chinese");
-      d3.select("#mainContainer").append("img")
-        .attr("src", "./images/fullBarComplete.jpg")
-        .attr("alt", "PJK Neighborhood Chinese")
-        .attr("id", "fullBar");
+      // Top nav
+      const navDiv = d3.select("#navDiv");
+      sortedGroups.forEach(group => {
+        navDiv.append("button")
+          .attr("class", "drop-downs")
+          .attr("data-group", group.name)
+          .text(group.name);
+      });
+
+      // Bottom nav (stretch 2 buttons)
+      const bottomNav = d3.select("#bottomNav");
+      ["Open Bar", "Close Bar"].forEach(name => {
+        bottomNav.append("button")
+          .attr("class", "bottom-button")
+          .attr("data-group", name)
+          .text(name);
+      });
     };
 
-    $(document).ready(() => {
+    const showGroup = groupName => {
+      resetMain();
+      const group = groupsArr.find(g => g.name === groupName);
+      if(!group) return;
+
+      d3.select("#titleDiv").text(groupName);
+
+      const sortedSections = group.sections.slice().sort((a,b)=>{
+        if(a.order && b.order) return a.order - b.order;
+        if(a.order && !b.order) return -1;
+        if(!a.order && b.order) return 1;
+        return a.section.localeCompare(b.section);
+      });
+
+      currentSections = sortedSections;
+      currentIndex = 0;
+
+      const container = d3.select("#mainContainer");
+      const count = sortedSections.length;
+
+      // Determine dynamic thumbnail width
+      let thumbWidth = 20; // default 20vw
+      if(count === 1) thumbWidth = 60;
+      else if(count === 2) thumbWidth = 40;
+      else if(count === 3) thumbWidth = 30;
+      else if(count === 4) thumbWidth = 25;
+      else if(count === 5) thumbWidth = 20;
+      // else leave at default for 6+
+
+      const thumbs = container.selectAll(".thumb")
+        .data(sortedSections)
+        .enter()
+        .append("div")
+        .attr("class","thumb")
+        .style("opacity",0)
+        .style("width", thumbWidth + "vw");  // dynamic width
+
+      thumbs.append("img")
+        .attr("src", d => `./images/${toCamelCase(d.section)}.jpg`)
+        .attr("alt", d => d.section)
+        .attr("id", d => toCamelCase(d.section))
+        .attr("class","thumbnail")
+        .on("click",(event,d)=>showFullImage(d.section));
+
+      thumbs.transition()
+        .duration(100)
+        .style("opacity",1)
+        .delay((_,i)=>i*50);
+    };
+
+    const showFullImage = title => {
+      resetAll();
+      d3.select("#titleDiv").text(title);
+
+      const container = d3.select("#mainContainer");
+      container.append("img")
+        .attr("src", `./images/${toCamelCase(title)}.jpg`)
+        .attr("alt", title)
+        .attr("class","fullImage");
+
+      // arrows
+      container.append("button")
+        .attr("class","nav-arrow")
+        .attr("id","prevBtn")
+        .html("<")
+        .on("click",prevImage);
+
+      container.append("button")
+        .attr("class","nav-arrow")
+        .attr("id","nextBtn")
+        .html(">")
+        .on("click",nextImage);
+
+      currentIndex = currentSections.findIndex(s => s.section===title);
+    };
+
+    const nextImage = () => {
+      if(currentSections.length===0) return;
+      currentIndex = (currentIndex+1) % currentSections.length;
+      showFullImage(currentSections[currentIndex].section);
+    };
+
+    const prevImage = () => {
+      if(currentSections.length===0) return;
+      currentIndex = (currentIndex-1+currentSections.length) % currentSections.length;
+      showFullImage(currentSections[currentIndex].section);
+    };
+
+    $(document).ready(()=>{
       buildLayout();
 
-      // Menu button click (show sections)
-      $('body').on('click', '#menuButton, #fullBar', function() {
-        reset();
+      // Initial full bar image
+      d3.select("#titleDiv").text("PJK Neighborhood Chinese");
+      d3.select("#mainContainer").append("img")
+        .attr("src","./images/fullBarComplete.jpg")
+        .attr("alt","PJK Neighborhood Chinese")
+        .attr("class","fullImage");
 
-        sectionArr.forEach(x => {
-          const section = x.section;
-          const camelCase = toCamelCase(section);
-          d3.select("#mainContainer")
-            .append("button")
-            .attr("class", "buttons section-buttons")
-            .attr("id", camelCase)
-            .attr("val", section)
-            .text(section);
-        });
-      });
-
-      // Section button click (show image)
-      $('body').on('click', '.section-buttons', function() {
-        reset();
-        const title = $(this).attr("val");
-        const image = this.id;
-
-        d3.select("#titleDiv").append("h1").attr("id", "Title").text(title);
-        d3.select("#mainContainer")
-          .append("img")
-          .attr("src", `./images/${image}.jpg`)
-          .attr("alt", title);
+      $("body").on("click",".drop-downs,.bottom-button",function(){
+        const group = $(this).data("group");
+        showGroup(group);
       });
     });
-
   })
-  .catch(error => console.error('There was a problem...', error));
+  .catch(err=>console.error("Error:",err));
