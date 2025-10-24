@@ -52,29 +52,37 @@ fetch("data.json")
       });
     };
 
-    // Compute responsive thumbnail width based on number of thumbnails & screen width
-    const getThumbWidth = (count) => {
+    const getThumbWidth = count => {
       const screenWidth = window.innerWidth;
 
-      if(screenWidth >= 1200){ // desktop
+      // Desktop
+      if(screenWidth > 1024) {
         if(count === 1) return 60;
         if(count === 2) return 40;
         if(count === 3) return 30;
         if(count === 4) return 25;
         if(count === 5) return 20;
-        return 18;
-      } else if(screenWidth >= 768){ // tablet
+        return 18; // 6+ thumbs
+      }
+
+      // Tablet
+      if(screenWidth > 768) {
         if(count === 1) return 70;
         if(count === 2) return 50;
         if(count === 3) return 35;
         if(count === 4) return 30;
         return 25;
-      } else { // mobile
+      }
+
+      // Mobile
+      if(screenWidth <= 768) {
         if(count === 1) return 90;
         if(count === 2) return 70;
         if(count === 3) return 60;
-        return 50;
+        if(count >= 4) return 50;
       }
+
+      return 20; // fallback
     };
 
     const showGroup = groupName => {
@@ -96,7 +104,6 @@ fetch("data.json")
 
       const container = d3.select("#mainContainer");
       const count = sortedSections.length;
-      const thumbWidth = getThumbWidth(count);
 
       const thumbs = container.selectAll(".thumb")
         .data(sortedSections)
@@ -104,7 +111,7 @@ fetch("data.json")
         .append("div")
         .attr("class","thumb")
         .style("opacity",0)
-        .style("width", thumbWidth + "vw");
+        .style("width", getThumbWidth(count) + "vw");  // dynamic width
 
       thumbs.append("img")
         .attr("src", d => `./images/${toCamelCase(d.section)}.jpg`)
@@ -157,6 +164,14 @@ fetch("data.json")
       showFullImage(currentSections[currentIndex].section);
     };
 
+    const handleResize = () => {
+      // If currently showing thumbnails, adjust their widths dynamically
+      if(currentSections.length > 0 && d3.select("#mainContainer").selectAll(".thumb").size()>0) {
+        const count = currentSections.length;
+        d3.selectAll(".thumb").style("width", getThumbWidth(count) + "vw");
+      }
+    };
+
     $(document).ready(()=>{
       buildLayout();
 
@@ -172,12 +187,8 @@ fetch("data.json")
         showGroup(group);
       });
 
-      // Recompute thumbnail sizes on resize
-      window.addEventListener("resize", () => {
-        if(currentSections.length > 0){
-          showGroup(d3.select("#titleDiv").text());
-        }
-      });
+      window.addEventListener("resize", handleResize);
+      window.addEventListener("orientationchange", handleResize);
     });
   })
   .catch(err=>console.error("Error:",err));
