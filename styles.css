@@ -2,8 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    scrollbar-width: none;     /* Firefox */
-    -ms-overflow-style: none;  /* IE/Edge */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
 }
 
 *::-webkit-scrollbar {
@@ -16,33 +16,40 @@ html, body {
     font-family: 'Courier New', Courier, monospace;
     background-image: url(./images/japan.jpg);
     background-color: rgb(58, 23, 31);
-    color: antiquewhite;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     transition: background-size 0.5s ease;
+    color: antiquewhite;
 }
 
-/* Top Nav */
+/* Top Nav with stacked layout */
 #navDiv {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 6px;
-    padding: 8px;
+    display: flex;
+    flex-direction: column; /* stack nav buttons */
     background-color: rgba(0, 0, 0, 0.825);
     z-index: 1000;
+    padding: 8px;
 }
 
+/* Nav buttons container */
+#navButtons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 6px;
+}
+
+/* Nav buttons */
 .drop-downs {
     background-color: #333;
     color: white;
     border: none;
     padding: 10px 0;
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-align: center;
     border-radius: 6px;
     cursor: pointer;
@@ -54,24 +61,11 @@ html, body {
     transform: scale(1.03);
 }
 
-/* Title Div */
-#titleDiv {
-    position: relative;
-    margin-top: 60px; /* nav height */
-    width: 100%;
-    font-size: 4vh;
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 6px 6px 20px #000;
-    padding: 20px 0 10px 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 500;
-}
-
-/* Main Container */
+/* Main Container perfectly between top and bottom nav */
 #mainContainer {
-    width: 100%;
-    height: calc(100% - 60px - 60px - 60px); /* nav + title + bottom nav */
+    position: absolute;
+    left: 0;
+    right: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -104,7 +98,7 @@ html, body {
     transform: scale(1.05);
 }
 
-/* Full image display */
+/* Full image */
 .fullImage {
     max-width: 95%;
     max-height: 90%;
@@ -113,7 +107,7 @@ html, body {
     box-shadow: 8px 8px 35px #000;
 }
 
-/* Arrow buttons for full image */
+/* Arrow buttons */
 .nav-arrow {
     position: absolute;
     top: 50%;
@@ -142,7 +136,7 @@ html, body {
     left: 0;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* two buttons evenly */
+    grid-template-columns: repeat(2, 1fr);
     gap: 6px;
     padding: 8px;
     background-color: rgba(0, 0, 0, 0.825);
@@ -154,7 +148,7 @@ html, body {
     color: white;
     border: none;
     padding: 10px 0;
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-align: center;
     border-radius: 6px;
     cursor: pointer;
@@ -167,33 +161,23 @@ html, body {
 }
 
 /* Responsive adjustments */
-@media (max-width: 1024px) {
-    .drop-downs, .bottom-button {
-        font-size: 1.6rem;
-    }
-
-    #titleDiv {
-        font-size: 4.5vw;
-        padding: 15px 0 8px 0;
-    }
+@media (max-width: 900px) {
+    .thumb { margin: 6px; }
+    .drop-downs, .bottom-button { font-size: 1.5rem; padding: 8px 0; }
 }
 
-@media (max-width: 800px) {
-    .drop-downs, .bottom-button {
-        font-size: 1.4rem;
-    }
+@media (max-width: 600px) {
+    .thumb { margin: 4px; }
+    .drop-downs, .bottom-button { font-size: 1.2rem; padding: 6px 0; }
+}
 
-    #titleDiv {
-        font-size: 5vw;
-        padding: 12px 0 6px 0;
-    }
-
+/* Portrait zoomed background */
+@media (orientation: portrait) {
     html, body {
-        background-size: 125%;  /* zoom background for portrait on mobile */
-        background-position: center center;
+        background-size: 500% auto; /* zoom in 25% width */
+        background-position: center top;
     }
 
-    #mainContainer {
-        height: calc(100% - 60px - 60px - 60px); /* nav + title + bottom nav */
-    }
+    /* Portrait: two thumbnails wide */
+    #navButtons { grid-template-columns: repeat(2, 1fr); }
 }

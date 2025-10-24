@@ -1,117 +1,97 @@
-console.log("%c ------------ PJK Section Thumbnails (Responsive Dynamic Scaling) ------------", "color: yellow;");
+console.log("%c ------------ PJK Section Thumbnails (Responsive) ------------", "color: yellow;");
 
 fetch("data.json")
   .then(res => {
-    if (!res.ok) throw new Error("Network error");
+    if(!res.ok) throw new Error("Network error");
     return res.json();
   })
   .then(data => {
     const groupsArr = data[0].groups;
 
     const toCamelCase = str =>
-      str
-        .replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase())
-        .replace(/[^a-zA-Z0-9]/g, "")
-        .replace(/^(.)/, c => c.toLowerCase());
+      str.replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase())
+         .replace(/[^a-zA-Z0-9]/g, "")
+         .replace(/^(.)/, c => c.toLowerCase());
 
     const sortedGroups = groupsArr.filter(g => g.name !== "Open Bar" && g.name !== "Close Bar")
                                   .sort((a,b) => a.name.localeCompare(b.name));
 
     const resetMain = () => d3.select("#mainContainer").selectAll("*").remove();
-    const resetAll = () => {
-      d3.select("#titleDiv").selectAll("*").remove();
-      resetMain();
-    };
+    const resetAll = () => resetMain();
 
     let currentSections = [];
     let currentIndex = 0;
 
     // Build layout
     const buildLayout = () => {
-      d3.select("body").append("div").attr("id", "navDiv");
-      d3.select("body").append("div").attr("id", "titleDiv");
-      d3.select("body").append("div").attr("id", "mainContainer");
-      d3.select("body").append("div").attr("id", "bottomNav");
+      d3.select("body").append("div").attr("id","navDiv");
+      d3.select("#navDiv").append("div").attr("id","navButtons");
+      d3.select("body").append("div").attr("id","mainContainer");
+      d3.select("body").append("div").attr("id","bottomNav");
 
       // Top nav
-      const navDiv = d3.select("#navDiv");
+      const navDiv = d3.select("#navButtons");
       sortedGroups.forEach(group => {
         navDiv.append("button")
-          .attr("class", "drop-downs")
-          .attr("data-group", group.name)
+          .attr("class","drop-downs")
+          .attr("data-group",group.name)
           .text(group.name);
       });
 
-      // Bottom nav (stretch 2 buttons)
+      // Bottom nav
       const bottomNav = d3.select("#bottomNav");
-      ["Open Bar", "Close Bar"].forEach(name => {
+      ["Open Bar","Close Bar"].forEach(name => {
         bottomNav.append("button")
-          .attr("class", "bottom-button")
-          .attr("data-group", name)
+          .attr("class","bottom-button")
+          .attr("data-group",name)
           .text(name);
       });
+
+      adjustMainContainer();
     };
 
-    const getThumbWidth = count => {
-      const screenWidth = window.innerWidth;
-
-      // Desktop
-      if(screenWidth > 1024) {
-        if(count === 1) return 60;
-        if(count === 2) return 40;
-        if(count === 3) return 30;
-        if(count === 4) return 25;
-        if(count === 5) return 20;
-        return 18; // 6+ thumbs
-      }
-
-      // Tablet
-      if(screenWidth > 768) {
-        if(count === 1) return 70;
-        if(count === 2) return 50;
-        if(count === 3) return 35;
-        if(count === 4) return 30;
-        return 25;
-      }
-
-      // Mobile
-      if(screenWidth <= 768) {
-        if(count === 1) return 90;
-        if(count === 2) return 70;
-        if(count === 3) return 60;
-        if(count >= 4) return 50;
-      }
-
-      return 20; // fallback
+    const adjustMainContainer = () => {
+      const navHeight = document.getElementById("navDiv").offsetHeight;
+      const bottomHeight = document.getElementById("bottomNav").offsetHeight;
+      const main = document.getElementById("mainContainer");
+      main.style.top = navHeight + "px";
+      main.style.bottom = bottomHeight + "px";
+      main.style.position = "absolute";
     };
+
+    window.addEventListener("resize", adjustMainContainer);
 
     const showGroup = groupName => {
       resetMain();
       const group = groupsArr.find(g => g.name === groupName);
       if(!group) return;
 
-      d3.select("#titleDiv").text(groupName);
-
-      const sortedSections = group.sections.slice().sort((a,b)=>{
+      currentSections = group.sections.slice().sort((a,b)=>{
         if(a.order && b.order) return a.order - b.order;
         if(a.order && !b.order) return -1;
         if(!a.order && b.order) return 1;
         return a.section.localeCompare(b.section);
       });
-
-      currentSections = sortedSections;
       currentIndex = 0;
 
       const container = d3.select("#mainContainer");
-      const count = sortedSections.length;
+      const count = currentSections.length;
+
+      // Dynamic thumbnail width
+      let thumbWidth = 20;
+      if(count === 1) thumbWidth = 60;
+      else if(count === 2) thumbWidth = 40;
+      else if(count === 3) thumbWidth = 30;
+      else if(count === 4) thumbWidth = 25;
+      else if(count === 5) thumbWidth = 20;
 
       const thumbs = container.selectAll(".thumb")
-        .data(sortedSections)
+        .data(currentSections)
         .enter()
         .append("div")
         .attr("class","thumb")
         .style("opacity",0)
-        .style("width", getThumbWidth(count) + "vw");  // dynamic width
+        .style("width", thumbWidth+"vw");
 
       thumbs.append("img")
         .attr("src", d => `./images/${toCamelCase(d.section)}.jpg`)
@@ -121,35 +101,33 @@ fetch("data.json")
         .on("click",(event,d)=>showFullImage(d.section));
 
       thumbs.transition()
-        .duration(300)
+        .duration(50)
         .style("opacity",1)
         .delay((_,i)=>i*50);
     };
 
     const showFullImage = title => {
       resetAll();
-      d3.select("#titleDiv").text(title);
 
       const container = d3.select("#mainContainer");
       container.append("img")
-        .attr("src", `./images/${toCamelCase(title)}.jpg`)
-        .attr("alt", title)
+        .attr("src",`./images/${toCamelCase(title)}.jpg`)
+        .attr("alt",title)
         .attr("class","fullImage");
 
-      // arrows
       container.append("button")
         .attr("class","nav-arrow")
         .attr("id","prevBtn")
-        .html("<")
+        .html("&lt;")
         .on("click",prevImage);
 
       container.append("button")
         .attr("class","nav-arrow")
         .attr("id","nextBtn")
-        .html(">")
+        .html("&gt;")
         .on("click",nextImage);
 
-      currentIndex = currentSections.findIndex(s => s.section===title);
+      currentIndex = currentSections.findIndex(s=>s.section===title);
     };
 
     const nextImage = () => {
@@ -164,19 +142,10 @@ fetch("data.json")
       showFullImage(currentSections[currentIndex].section);
     };
 
-    const handleResize = () => {
-      // If currently showing thumbnails, adjust their widths dynamically
-      if(currentSections.length > 0 && d3.select("#mainContainer").selectAll(".thumb").size()>0) {
-        const count = currentSections.length;
-        d3.selectAll(".thumb").style("width", getThumbWidth(count) + "vw");
-      }
-    };
-
     $(document).ready(()=>{
       buildLayout();
 
       // Initial full bar image
-      d3.select("#titleDiv").text("PJK Neighborhood Chinese");
       d3.select("#mainContainer").append("img")
         .attr("src","./images/fullBarComplete.jpg")
         .attr("alt","PJK Neighborhood Chinese")
@@ -186,9 +155,7 @@ fetch("data.json")
         const group = $(this).data("group");
         showGroup(group);
       });
-
-      window.addEventListener("resize", handleResize);
-      window.addEventListener("orientationchange", handleResize);
     });
+
   })
-  .catch(err=>console.error("Error:",err));
+  .catch(err => console.error("Error:",err));
