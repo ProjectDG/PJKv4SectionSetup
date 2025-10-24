@@ -1,4 +1,4 @@
-console.log("%c ------------ PJK Section Thumbnails (Dynamic Scaling) ------------", "color: yellow;");
+console.log("%c ------------ PJK Section Thumbnails (Responsive Dynamic Scaling) ------------", "color: yellow;");
 
 fetch("data.json")
   .then(res => {
@@ -52,6 +52,31 @@ fetch("data.json")
       });
     };
 
+    // Compute responsive thumbnail width based on number of thumbnails & screen width
+    const getThumbWidth = (count) => {
+      const screenWidth = window.innerWidth;
+
+      if(screenWidth >= 1200){ // desktop
+        if(count === 1) return 60;
+        if(count === 2) return 40;
+        if(count === 3) return 30;
+        if(count === 4) return 25;
+        if(count === 5) return 20;
+        return 18;
+      } else if(screenWidth >= 768){ // tablet
+        if(count === 1) return 70;
+        if(count === 2) return 50;
+        if(count === 3) return 35;
+        if(count === 4) return 30;
+        return 25;
+      } else { // mobile
+        if(count === 1) return 90;
+        if(count === 2) return 70;
+        if(count === 3) return 60;
+        return 50;
+      }
+    };
+
     const showGroup = groupName => {
       resetMain();
       const group = groupsArr.find(g => g.name === groupName);
@@ -71,15 +96,7 @@ fetch("data.json")
 
       const container = d3.select("#mainContainer");
       const count = sortedSections.length;
-
-      // Determine dynamic thumbnail width
-      let thumbWidth = 20; // default 20vw
-      if(count === 1) thumbWidth = 60;
-      else if(count === 2) thumbWidth = 40;
-      else if(count === 3) thumbWidth = 30;
-      else if(count === 4) thumbWidth = 25;
-      else if(count === 5) thumbWidth = 20;
-      // else leave at default for 6+
+      const thumbWidth = getThumbWidth(count);
 
       const thumbs = container.selectAll(".thumb")
         .data(sortedSections)
@@ -87,7 +104,7 @@ fetch("data.json")
         .append("div")
         .attr("class","thumb")
         .style("opacity",0)
-        .style("width", thumbWidth + "vw");  // dynamic width
+        .style("width", thumbWidth + "vw");
 
       thumbs.append("img")
         .attr("src", d => `./images/${toCamelCase(d.section)}.jpg`)
@@ -97,7 +114,7 @@ fetch("data.json")
         .on("click",(event,d)=>showFullImage(d.section));
 
       thumbs.transition()
-        .duration(100)
+        .duration(300)
         .style("opacity",1)
         .delay((_,i)=>i*50);
     };
@@ -153,6 +170,13 @@ fetch("data.json")
       $("body").on("click",".drop-downs,.bottom-button",function(){
         const group = $(this).data("group");
         showGroup(group);
+      });
+
+      // Recompute thumbnail sizes on resize
+      window.addEventListener("resize", () => {
+        if(currentSections.length > 0){
+          showGroup(d3.select("#titleDiv").text());
+        }
       });
     });
   })

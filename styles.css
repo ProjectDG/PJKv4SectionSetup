@@ -17,7 +17,13 @@ html, body {
     background-image: url(./images/japan.jpg);
     background-color: rgb(58, 23, 31);
     color: antiquewhite;
+
+    background-size: 125%;      /* Zoom in 25% */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-attachment: fixed; /* optional: keeps background fixed during scroll */
 }
+
 
 /* Top Nav */
 #navDiv {
@@ -78,7 +84,7 @@ html, body {
 
 /* Thumbnails */
 .thumb {
-    width: 20vw;
+    width: 20vw; /* will be overridden dynamically via JS */
     aspect-ratio: 4 / 3;
     margin: 8px;
     display: flex;
@@ -161,4 +167,50 @@ html, body {
 .bottom-button:hover {
     background-color: #555;
     transform: scale(1.03);
+}
+
+/* ----- Responsive Media Queries ----- */
+@media (max-width: 1024px) {
+    .drop-downs, .bottom-button {
+        font-size: 1.5rem;
+        padding: 8px 0;
+    }
+    #titleDiv {
+        font-size: 5vw;
+        padding: 15px 0 8px 0;
+    }
+}
+
+@media (max-width: 768px) { /* Tablets */
+    .thumb {
+        width: 30vw; /* default, JS will adjust dynamically */
+        margin: 6px;
+    }
+    #titleDiv {
+        font-size: 6vw;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile phones */
+    .thumb {
+        width: 45vw; /* maximize space for small screens */
+        margin: 4px;
+    }
+    #titleDiv {
+        font-size: 7vw;
+        padding: 10px 0 6px 0;
+    }
+    #navDiv, #bottomNav {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 4px;
+        padding: 6px;
+    }
+    .drop-downs, .bottom-button {
+        font-size: 1.2rem;
+        padding: 6px 0;
+    }
+    .nav-arrow {
+        font-size: 2rem;
+        padding: 15px;
+    }
 }
