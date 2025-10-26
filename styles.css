@@ -82,7 +82,8 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border: 4px outset rgb(227, 191, 127);
+  /* border: 4px outset rgb(227, 191, 127); */
+  border: 1px solid black;
   border-radius: 20px;
   box-shadow: 4px 4px 20px #000;
 }
@@ -92,7 +93,8 @@ html, body {
 .fullImage {
   max-width: 95%;
   max-height: 90%;
-  border: 8px outset rgb(227, 191, 127);
+  /* border: 8px outset rgb(227, 191, 127); */
+  border: 1px solid black;
   border-radius: 40px;
   box-shadow: 8px 8px 35px #000;
 }
@@ -121,6 +123,10 @@ h3{
 li, p ,.inserts {
     font-size: 1.1rem;
     margin: 2.5% 0%;
+}
+
+li{
+    margin-left: 5%;
 }
 
 /* Arrows */
