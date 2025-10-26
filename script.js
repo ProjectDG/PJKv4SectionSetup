@@ -6,6 +6,18 @@ fetch("data.json")
     return res.json();
   })
   .then(data => {
+
+    var elem = document.getElementsByTagName("BODY")[0];
+
+  function openFullscreen() {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      elem.msRequestFullscreen();
+    }
+  }
     const groupsArr = data[0].groups;
 
     const toCamelCase = str =>
@@ -211,6 +223,8 @@ fetch("data.json")
         .attr("class","fullImage");
 
       $("body").on("click",".drop-downs,.bottom-button",function(){
+        openFullscreen();
+
         const group = $(this).data("group");
         showGroup(group);
       });
