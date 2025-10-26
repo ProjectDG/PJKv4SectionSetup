@@ -22,14 +22,12 @@ fetch("data.json")
     let currentSections = [];
     let currentIndex = 0;
 
-    // Build layout
     const buildLayout = () => {
       d3.select("body").append("div").attr("id","navDiv");
       d3.select("#navDiv").append("div").attr("id","navButtons");
       d3.select("body").append("div").attr("id","mainContainer");
       d3.select("body").append("div").attr("id","bottomNav");
 
-      // Top nav
       const navDiv = d3.select("#navButtons");
       sortedGroups.forEach(group => {
         navDiv.append("button")
@@ -38,7 +36,6 @@ fetch("data.json")
           .text(group.name);
       });
 
-      // Bottom nav
       const bottomNav = d3.select("#bottomNav");
       ["Open Bar","Close Bar"].forEach(name => {
         bottomNav.append("button")
@@ -77,7 +74,6 @@ fetch("data.json")
       const container = d3.select("#mainContainer");
       const count = currentSections.length;
 
-      // Dynamic thumbnail width
       let thumbWidth = 20;
       if(count === 1) thumbWidth = 60;
       else if(count === 2) thumbWidth = 40;
@@ -127,6 +123,70 @@ fetch("data.json")
         .html("&gt;")
         .on("click",nextImage);
 
+      const section = currentSections.find(s => s.section === title);
+      if(section) {
+        const infoDiv = container.append("div")
+          .attr("class","info-divs")
+          .attr("id","infoDiv");
+
+        if(section.title) {
+          infoDiv.append("h3")
+                 .text(section.title)
+                 .style("marginTop","0.5em")
+                 .style("marginBottom","0.2em")
+                 .style("textDecoration","underline");
+        }
+
+        if(section.instructions && Array.isArray(section.instructions)) {
+          section.instructions.forEach(ins => {
+            infoDiv.append("h5")
+                   .text(ins)
+                   .style("marginTop","0.2em")
+                   .style("marginBottom","0.5em")
+                   .style("fontWeight","normal");
+          });
+        }
+
+        if(section.info && Array.isArray(section.info)) {
+          let ul = infoDiv.append("ul")
+            .style("listStyleType","disc")
+            .style("marginLeft","20px");
+
+          section.info.forEach(item => {
+            if(!item || item.trim() === "") return;
+
+            if(item === "HR") {
+              ul.append("hr")
+                .style("width","95%")
+                .style("border","none")
+                .style("height","2px")
+                .style("margin","10px auto")
+                .style("background","linear-gradient(to right, rgba(227,191,127,0), rgb(227,191,127), rgba(227,191,127,0))");
+            } else if(item.toLowerCase().startsWith("insert")) {
+              const match = item.match(/'(.*?)'/);
+              const text = match ? match[1] : item;
+              // close previous UL and insert P
+              ul = null;
+              infoDiv.append("p")
+                     .text(text)
+                     .style("margin","2px 0")
+                     .attr("class", "inserts");
+              // create new UL for following items
+              ul = infoDiv.append("ul")
+                          .style("listStyleType","disc")
+                          .style("marginLeft","20px");
+            } else {
+              if(!ul) {
+                ul = infoDiv.append("ul")
+                            .style("listStyleType","disc")
+                            .style("marginLeft","20px");
+              }
+              ul.append("li").text(item);
+            }
+          });
+        }
+      }
+
       currentIndex = currentSections.findIndex(s=>s.section===title);
     };
 
@@ -145,7 +205,6 @@ fetch("data.json")
     $(document).ready(()=>{
       buildLayout();
 
-      // Initial full bar image
       d3.select("#mainContainer").append("img")
         .attr("src","./images/fullBarComplete.jpg")
         .attr("alt","PJK Neighborhood Chinese")

@@ -4,9 +4,9 @@
       {
         "name": "Overstock",
         "sections": [
-          { "section": "Liquor Overstock", "order": "" },
+          { "section": "Liquor Overstock", "order": "13", "title" : "Stock Liquor", "info" : ["HR", "insert 'Rows front to back starting from the left'", "HR", "insert 'Row 1'", "HR","Wheatly x 3", "Titos x 2", "Well White Rum", "Well Dark Rum", "HR", "insert 'Row 2'","HR","Casamigos Reposado x 3", "Cointreau x 2", "Bacardi", "HR", "insert 'Row 3'","HR","Sazerac x 3", "Dos Hombres x 2", "Captain Morgan", "HR", "insert 'Row 4'","HR", "Rivi Gin x 2", "St. Germain x 2", "Campari", "Aperol", "HR", "insert 'Row 5'","HR","Los Vecinos x 2", "Lillet Blanc", "Fernet-Branca", "Don Q Coconut Rum", "HR", "insert 'Row 6'","HR","Corazon Blanco x 2", "Borghetti Espresso Liqueur", "Montenegro", "Dry Curacao", "Sweet Vermouth", "HR", "insert 'Row 7'","HR","Kettle One", "Grey Goose", "Belvedere", "Chopin", "Chinola Passion Fruit Liqueur"] },
           { "section": "Red Wine Overstock", "order": "" },
-          { "section": "White Wine Overstock", "order": "" }
+          { "section": "White Wine Overstock", "order": "12", "title" : "Stock White Wines", "info" : ["HR", "insert 'First Section'", "insert '(clockwise starting from top)'", "HR", "Briganti: Pinot Grigio - 6", "Craggy Range: Savignon Blanc - 6", "Chablis - 4", "Craggy Range: Savignon Blanc - 6",  "HR","insert 'Second Section'", "insert '(clockwise starting from top)'", "HR", "Whispering Angel: Rose - 6", "ZD: Chardonnay - 6", "Albert Bichot: Brut - 4", "Dr. Loosen: Dry Reisling - 6", "HR", "insert 'Third Section'", "insert '(clockwise starting from top)'", "HR", "Sancerre - 6", "Alexander Valley: Chardonnay - 6", "Whispering Angel: Rose - 4", "Alexander Valley: Chardonnay - 6"] }
         ]
       },
       {
@@ -21,8 +21,8 @@
         "sections": [
           { "section": "North Wine Cooler (Closed)", "order": "4" },
           { "section": "Keg Cooler (Closed)", "order": "5" },
-          { "section": "Beer Cooler", "order": "1" },
-          { "section": "North Wine Cooler Right Stock", "order": "3" },
+          { "section": "Beer Cooler", "order": "14", "title" : "Beer & Sake", "info" : ["HR", "insert 'Top Rows'", "HR", "Row 1 - Ultra: 6", "Row 2 - Ultra: 6", "Row 3 - Heineken: 6", "Row 4 - Heineken: 2", "Row 5 - Modelo: 5", "Row 6 - Modelo: 5", "Row 7 - High 5: 6", "HR", "insert 'Bottom Rows'", "HR", "Row 1 - Heineken 00: 7", "Row 2 - Heineken 00: 6", "Row 3 - Sapporo: 7", "Row 4 - Sapporo: 6", "Row 5 - Coors Light: 7", "Row 6 - Coors Light: 7", "Row 7 - Tsingtao: 7", "Row 8 - Tsingtao: 5", "HR", "insert 'Sake'","HR","Row 1 - Pure Dusk: 6", "Row 2 - Nigori (unfiltered): 6"] },
+          { "section": "North Wine Cooler Right Stock", "order": "15", "title" : "Stock Living Jewel & Waters", "info" : ["HR", "Living Jewel - 5", "Waters - 6 per row"] },
           { "section": "East Wine Cooler", "order": "2" }
         ]
       },
@@ -32,45 +32,45 @@
           { "section": "Service Well (Closed)", "order": "7" },
           { "section": "Service Well Stock (Closed)", "order": "6" },
           { "section": "Service Well Step 1", "order": "1" },
-          { "section": "Service Well Stock", "order": "3" },
-          { "section": "Service Well Step 2", "order": "2" },
-          { "section": "Service Well Plants", "order": "4" },
-          { "section": "Service Well Complete", "order": "5" }
+          { "section": "Service Well Stock", "order": "4", "title" : "Garnish Station", "info" : ["HR","Chili Tincture", "Mini Clothes Pins", "Gold Picks", "Small Straws", "Green Picks", "Tall Straws", "HR", "Cherries", "Olives", "Lime Wedges", "Lemon Wedges", "Orange Slices", "HR", "Coffee Beans", "Dehydrated Limes", "Dehydrated Chilis","Dehydrated Lemons", "Dehydrated Oranges"]},
+          { "section": "Service Well Step 2", "order": "3", "title" : "Step Three", "info" : ["HR", "insert 'Bitters'", "HR","Angoustura Bitters", "Citrus Angostura Bitters", "HR", "insert 'Juices & Syrups'","HR","Cranberry Juice", "Mango Puree", "Pomegranate Juice", "Agave", "Olive Juice", "Pineapple Juice", "Lychee Syrup", "Black Tea Syrup", "HR", "insert 'Q Sodas'","HR", "Tonic", "Grapefruit", "Ginger Beer"] },
+          { "section": "Service Well Plants", "order": "5", "title" : "Plant Garnish", "info" : ["HR","Thai Basil", "Mint Sprigs", "Pineapple Fronds", "Shiso Leaves", "Flowers"] },
+          { "section": "Service Well Complete", "order": "6", "title" : "Service Well Complete", "info" : [] }
         ]
       },
       {
         "name": "Misc.",
         "sections": [
+          { "section": "dehydrator", "order": "1", "title" : "Dehydrator","info" : ["HR","Press Time/Temp Button", "Set time to 16:00", "Leave temp. at 165", "Press start"] },
+          { "section": "Washer Mat Setup", "order": "2", "title" : "Step Two", "info" : ["HR","Place bar mats in position", "HR","2 - water carafes", "1 - tea carafe if needed", "HR", "Micro fiber towel for wine glasses"] },
+          { "section": "Red Wines", "order": "3", "title" : "Stock Red Wines", "info" : ["HR", "insert '6 Bottles per row'", "HR","Orin Swift '8 years in the desert' : Zinfindel", "Flower : Pinot Noir", "Chappellet : Cabernet Blend", "Felino : Malbec", "Planet Oregon : Pinot Noir", "The Critic : Cabernet" ] },
+          { "section": "Place Settings", "order": "4", "title" : "Stock Place Settings Station", "info" : ["HR","Place Mats", "Plates", "Chop Sticks", "Forks", "Napkin Folds"] },
+          { "section": "To Go Station", "order": "5", "title" : "Stock To Go Station", "info" : ["HR","To Go Bags", "Soup Containers", "Ramekins","HR", "Divided Containers & Lids", "Full Containers & Lids"] },
+          { "section": "Rims", "order": "6", "title" : "Rimming Station", "info" : ["HR","Sea Salt", "Sugar", "Tajin"] },
+          { "section": "Lamp Charger Storage", "order": "7", "title" : "Put Lamp Charger Away", "info" : ["", ""] },
+          { "section": "Lamps (Closed)", "order": "8" },
           { "section": "Equipment (Closed)", "order": "9" },
-          { "section": "Full Bar (Complete)", "order": "1" },
           { "section": "Washer (Closed)", "order": "10" },
-          { "section": "Lamps (Closed)", "order": "7" },
-          { "section": "Place Settings", "order": "4" },
-          { "section": "To Go Station", "order": "5" },
-          { "section": "Washer Mat Setup", "order": "3" },
-          { "section": "Lamp Charger Storage", "order": "8" },
-          { "section": "Red Wines", "order": "6" },
-          { "section": "dehydrator", "order": "" },
-          { "section": "Rims", "order": "2" }
+          { "section": "Full Bar (Complete)", "order": "", "title" : "Full Bar Complete!" }
         ]
       },
       { "name": "Open Bar", "sections": [
-        { "section": "Service Well Step 1", "order": "1" },
-        { "section": "Washer Mat Setup", "order": "2" },
-        { "section": "Service Well Step 2", "order": "3" },
-        { "section": "Service Well Stock", "order": "4" },
-        { "section": "Service Well Plants", "order": "5" },
-        { "section": "Service Well Complete", "order": "6" },
-        { "section": "Rims", "order": "7" },
-        { "section": "Place Settings", "order": "8" },
-        { "section": "To Go Station", "order": "9" },
-        { "section": "Lamp Charger Storage", "order": "10" },
-        { "section": "Red Wines", "order": "11" },
-        { "section": "White Wine Overstock", "order": "12" },
-        { "section": "Liquor Overstock", "order": "13" },
-        { "section": "Beer Cooler", "order": "14" },
-        { "section": "North Wine Cooler Right Stock", "order": "15" },
-        { "section": "Full Bar (Complete)", "order": "16" }
+        { "section": "Service Well Step 1", "order": "1", "title" : "Step One", "info" : ["HR","Place bar mats in position", "Lazy Susan & ticket spindle as well"] },
+        { "section": "Washer Mat Setup", "order": "2", "title" : "Step Two", "info" : ["HR","Place bar mats in position", "HR","2 - water carafes", "1 - tea carafe if needed", "HR", "Micro fiber towel for wine glasses"] },
+        { "section": "Service Well Step 2", "order": "3", "title" : "Step Three", "info" : ["HR", "insert 'Bitters'", "HR","Angoustura Bitters", "Citrus Angostura Bitters", "HR", "insert 'Juices & Syrups'","HR","Cranberry Juice", "Mango Puree", "Pomegranate Juice", "Agave", "Olive Juice", "Pineapple Juice", "Lychee Syrup", "Black Tea Syrup", "HR", "insert 'Q Sodas'","HR", "Tonic", "Grapefruit", "Ginger Beer"] },
+        { "section": "Service Well Stock", "order": "4", "title" : "Garnish Station", "info" : ["HR","Chili Tincture", "Mini Clothes Pins", "Gold Picks", "Small Straws", "Green Picks", "Tall Straws", "HR", "Cherries", "Olives", "Lime Wedges", "Lemon Wedges", "Orange Slices", "HR", "Coffee Beans", "Dehydrated Limes", "Dehydrated Chilis","Dehydrated Lemons", "Dehydrated Oranges"]},
+        { "section": "Service Well Plants", "order": "5", "title" : "Plant Garnish", "info" : ["HR","Thai Basil", "Mint Sprigs", "Pineapple Fronds", "Shiso Leaves", "Flowers"] },
+        { "section": "Service Well Complete", "order": "6", "title" : "Service Well Complete", "info" : [] },
+        { "section": "Rims", "order": "7", "title" : "Rimming Station", "info" : ["HR","Sea Salt", "Sugar", "Tajin"] },
+        { "section": "Place Settings", "order": "8", "title" : "Stock Place Settings Station", "info" : ["HR","Place Mats", "Plates", "Chop Sticks", "Forks", "Napkin Folds"] },
+        { "section": "To Go Station", "order": "9", "title" : "Stock To Go Station", "info" : ["HR","To Go Bags", "Soup Containers", "Ramekins","HR", "Divided Containers & Lids", "Full Containers & Lids"] },
+        { "section": "Lamp Charger Storage", "order": "10", "title" : "Put Lamp Charger Away", "info" : ["", ""] },
+        { "section": "Red Wines", "order": "11", "title" : "Stock Red Wines", "info" : ["HR", "insert '6 Bottles per row'", "HR","Orin Swift '8 years in the desert' : Zinfindel", "Flower : Pinot Noir", "Chappellet : Cabernet Blend", "Felino : Malbec", "Planet Oregon : Pinot Noir", "The Critic : Cabernet" ] },
+        { "section": "White Wine Overstock", "order": "12", "title" : "Stock White Wines", "info" : ["HR", "insert 'First Section'", "insert '(clockwise starting from top)'", "HR", "Briganti: Pinot Grigio - 6", "Craggy Range: Savignon Blanc - 6", "Chablis - 4", "Craggy Range: Savignon Blanc - 6",  "HR","insert 'Second Section'", "insert '(clockwise starting from top)'", "HR", "Whispering Angel: Rose - 6", "ZD: Chardonnay - 6", "Albert Bichot: Brut - 4", "Dr. Loosen: Dry Reisling - 6", "HR", "insert 'Third Section'", "insert '(clockwise starting from top)'", "HR", "Sancerre - 6", "Alexander Valley: Chardonnay - 6", "Whispering Angel: Rose - 4", "Alexander Valley: Chardonnay - 6"] },
+        { "section": "Liquor Overstock", "order": "13", "title" : "Stock Liquor", "info" : ["HR", "insert 'Rows front to back starting from the left'", "HR", "insert 'Row 1'", "HR","Wheatly x 3", "Titos x 2", "Well White Rum", "Well Dark Rum", "HR", "insert 'Row 2'","HR","Casamigos Reposado x 3", "Cointreau x 2", "Bacardi", "HR", "insert 'Row 3'","HR","Sazerac x 3", "Dos Hombres x 2", "Captain Morgan", "HR", "insert 'Row 4'","HR", "Rivi Gin x 2", "St. Germain x 2", "Campari", "Aperol", "HR", "insert 'Row 5'","HR","Los Vecinos x 2", "Lillet Blanc", "Fernet-Branca", "Don Q Coconut Rum", "HR", "insert 'Row 6'","HR","Corazon Blanco x 2", "Borghetti Espresso Liqueur", "Montenegro", "Dry Curacao", "Sweet Vermouth", "HR", "insert 'Row 7'","HR","Kettle One", "Grey Goose", "Belvedere", "Chopin", "Chinola Passion Fruit Liqueur"] },
+        { "section": "Beer Cooler", "order": "14", "title" : "Stock Beer & Sake", "info" : ["HR", "insert 'Top Rows'", "HR", "Row 1 - Ultra: 6", "Row 2 - Ultra: 6", "Row 3 - Heineken: 6", "Row 4 - Heineken: 2", "Row 5 - Modelo: 5", "Row 6 - Modelo: 5", "Row 7 - High 5: 6", "HR", "insert 'Bottom Rows'", "HR", "Row 1 - Heineken 00: 7", "Row 2 - Heineken 00: 6", "Row 3 - Sapporo: 7", "Row 4 - Sapporo: 6", "Row 5 - Coors Light: 7", "Row 6 - Coors Light: 7", "Row 7 - Tsingtao: 7", "Row 8 - Tsingtao: 5", "HR", "insert 'Sake'","HR","Row 1 - Pure Dusk: 6", "Row 2 - Nigori (unfiltered): 6"] },
+        { "section": "North Wine Cooler Right Stock", "order": "15", "title" : "Stock Living Jewel & Waters", "info" : ["HR", "Living Jewel - 5", "Waters - 6 per row"] },
+        { "section": "Full Bar (Complete)", "order": "16", "title" : "Full Bar Complete!" }
       ] },
       { "name": "Close Bar", "sections": [] }
     ]
