@@ -19,6 +19,7 @@
       {
         "name": "Coolers",
         "sections": [
+          { "section": "Keg Cooler Right", "order": "5", "title" : "Keg Cooler Stock"},
           { "section": "North Wine Cooler (Closed)", "order": "4" },
           { "section": "Keg Cooler (Closed)", "order": "5" },
           { "section": "Beer Cooler", "order": "14", "title" : "Beer & Sake", "info" : ["HR", "insert 'Top Rows'", "HR", "Row 1 - Ultra: 6", "Row 2 - Ultra: 6", "Row 3 - Heineken: 6", "Row 4 - Heineken: 2", "Row 5 - Modelo: 5", "Row 6 - Modelo: 5", "Row 7 - High 5: 6", "HR", "insert 'Bottom Rows'", "HR", "Row 1 - Heineken 00: 7", "Row 2 - Heineken 00: 6", "Row 3 - Sapporo: 7", "Row 4 - Sapporo: 6", "Row 5 - Coors Light: 7", "Row 6 - Coors Light: 7", "Row 7 - Tsingtao: 7", "Row 8 - Tsingtao: 5", "HR", "insert 'Sake'","HR","Row 1 - Pure Dusk: 6", "Row 2 - Nigori (unfiltered): 6"] },
@@ -29,13 +30,13 @@
       {
         "name": "Service Well",
         "sections": [
-          { "section": "Service Well (Closed)", "order": "7" },
-          { "section": "Service Well Stock (Closed)", "order": "6" },
           { "section": "Service Well Step 1", "order": "1", "title" : "Step One", "info" : ["HR","Place bar mats in position", "Lazy Susan & ticket spindle as well"] },
-          { "section": "Service Well Stock", "order": "4", "title" : "Garnish Station", "info" : ["HR","Chili Tincture", "Mini Clothes Pins", "Gold Picks", "Small Straws", "Green Picks", "Tall Straws", "HR", "Cherries", "Olives", "Lime Wedges", "Lemon Wedges", "Orange Slices", "HR", "Coffee Beans", "Dehydrated Limes", "Dehydrated Chilis","Dehydrated Lemons", "Dehydrated Oranges"]},
-          { "section": "Service Well Step 2", "order": "3", "title" : "Step Three", "info" : ["HR", "insert 'Bitters'", "HR","Angoustura Bitters", "Citrus Angostura Bitters", "HR", "insert 'Juices & Syrups'","HR","Cranberry Juice", "Mango Puree", "Pomegranate Juice", "Agave", "Olive Juice", "Pineapple Juice", "Lychee Syrup", "Black Tea Syrup", "HR", "insert 'Q Sodas'","HR", "Tonic", "Grapefruit", "Ginger Beer"] },
-          { "section": "Service Well Plants", "order": "5", "title" : "Plant Garnish", "info" : ["HR","Thai Basil", "Mint Sprigs", "Pineapple Fronds", "Shiso Leaves", "Flowers"] },
-          { "section": "Service Well Complete", "order": "6", "title" : "Service Well Complete", "info" : [] }
+          { "section": "Service Well Step 2", "order": "2", "title" : "Step Three", "info" : ["HR", "insert 'Bitters'", "HR","Angoustura Bitters", "Citrus Angostura Bitters", "HR", "insert 'Juices & Syrups'","HR","Cranberry Juice", "Mango Puree", "Pomegranate Juice", "Agave", "Olive Juice", "Pineapple Juice", "Lychee Syrup", "Black Tea Syrup", "HR", "insert 'Q Sodas'","HR", "Tonic", "Grapefruit", "Ginger Beer"] },
+          { "section": "Service Well Stock", "order": "3", "title" : "Garnish Station", "info" : ["HR","Chili Tincture", "Mini Clothes Pins", "Gold Picks", "Small Straws", "Green Picks", "Tall Straws", "HR", "Cherries", "Olives", "Lime Wedges", "Lemon Wedges", "Orange Slices", "HR", "Coffee Beans", "Dehydrated Limes", "Dehydrated Chilis","Dehydrated Lemons", "Dehydrated Oranges"]},
+          { "section": "Service Well Plants", "order": "4", "title" : "Plant Garnish", "info" : ["HR","Thai Basil", "Mint Sprigs", "Pineapple Fronds", "Shiso Leaves", "Flowers"] },
+          { "section": "Service Well Complete", "order": "5", "title" : "Service Well Complete", "info" : [] },
+          { "section": "Service Well Stock (Closed)", "order": "6", "title" : "Service Well Garnish (Closed)" },
+          { "section": "Service Well (Closed)", "order": "7", "title" : "Service Well (Closed)" }
         ]
       },
       {
@@ -51,6 +52,7 @@
           { "section": "Lamps (Closed)", "order": "8" },
           { "section": "Equipment (Closed)", "order": "9" },
           { "section": "Washer (Closed)", "order": "10" },
+          { "section": "Trash Cans", "order": "11", "title" : "Replace liners and store near liquor overstock" },
           { "section": "Full Bar (Complete)", "order": "", "title" : "Full Bar Complete!" }
         ]
       },
@@ -71,7 +73,8 @@
         { "section": "Liquor Overstock", "order": "14", "title" : "Stock Liquor", "info" : ["HR", "insert 'Rows front to back starting from the left'", "HR", "insert 'Row 1'", "HR","Wheatly x 3", "Titos x 2", "Well White Rum", "Well Dark Rum", "HR", "insert 'Row 2'","HR","Casamigos Reposado x 3", "Cointreau x 2", "Bacardi", "HR", "insert 'Row 3'","HR","Sazerac x 3", "Dos Hombres x 2", "Captain Morgan", "HR", "insert 'Row 4'","HR", "Rivi Gin x 2", "St. Germain x 2", "Campari", "Aperol", "HR", "insert 'Row 5'","HR","Los Vecinos x 2", "Lillet Blanc", "Fernet-Branca", "Don Q Coconut Rum", "HR", "insert 'Row 6'","HR","Corazon Blanco x 2", "Borghetti Espresso Liqueur", "Montenegro", "Dry Curacao", "Sweet Vermouth", "HR", "insert 'Row 7'","HR","Kettle One", "Grey Goose", "Belvedere", "Chopin", "Chinola Passion Fruit Liqueur"] },
         { "section": "Beer Cooler", "order": "15", "title" : "Stock Beer & Sake", "info" : ["HR", "insert 'Top Rows'", "HR", "Row 1 - Ultra: 6", "Row 2 - Ultra: 6", "Row 3 - Heineken: 6", "Row 4 - Heineken: 2", "Row 5 - Modelo: 5", "Row 6 - Modelo: 5", "Row 7 - High 5: 6", "HR", "insert 'Bottom Rows'", "HR", "Row 1 - Heineken 00: 7", "Row 2 - Heineken 00: 6", "Row 3 - Sapporo: 7", "Row 4 - Sapporo: 6", "Row 5 - Coors Light: 7", "Row 6 - Coors Light: 7", "Row 7 - Tsingtao: 7", "Row 8 - Tsingtao: 5", "HR", "insert 'Sake'","HR","Row 1 - Pure Dusk: 6", "Row 2 - Nigori (unfiltered): 6"] },
         { "section": "North Wine Cooler Right Stock", "order": "16", "title" : "Stock Living Jewel & Waters", "info" : ["HR", "Living Jewel - 5", "Waters - 6 per row"] },
-        { "section": "Full Bar (Complete)", "order": "17", "title" : "Full Bar Complete!" }
+        { "section": "Keg Cooler Right", "order": "17", "title" : "Keg Cooler Stock", "info" : ["HR", "insert 'Make sure batches, juices and fruits are stocked'"]},
+        { "section": "Full Bar (Complete)", "order": "18", "title" : "Full Bar Complete!" }
       ] },
       { "name": "Close Bar", "sections": [] }
     ]
