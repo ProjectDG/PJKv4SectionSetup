@@ -76,7 +76,17 @@
         { "section": "Keg Cooler Right", "order": "17", "title" : "Keg Cooler Stock", "info" : ["HR", "insert 'Make sure batches, juices and fruits are stocked'"]},
         { "section": "Full Bar (Complete)", "order": "18", "title" : "Full Bar Complete!" }
       ] },
-      { "name": "Close Bar", "sections": [] }
+      { "name": "Close Bar", "sections": [
+        { "section": "Service Well Stock (Closed)", "order": "1", "title" : "Service Well Garnish (Closed)" },
+        { "section": "North Wine Cooler (Closed)", "order": "2", "title" : "Store Parishables from Wells", "info" : ["HR", "Plants", "Lime juice, lemon juice and simple syrup (wipe bottles)", "Wrap up individual fruit from garnish caddy"] },
+        { "section": "Keg Cooler (Closed)", "order": "3", "title" : "Wipe Down Keg Cooler", "info" : ["HR", "Cap taps", "Fruit caddy & empty carafes can be stored here after washed"]  },
+        { "section": "Equipment (Closed)", "order": "4", "title" : "Bar Equipment (Closed)", "info" : ["HR", "Neatly place bar equipment in corner after washed"]},
+        { "section": "Bar Well (Closed)", "order": "5", "title" : "Bar Well (Closed)", "info" : ["HR", "Wipe all bottles", "Wipe down racks", "Wipe down & wash soda gun equipment", "Cap bottles"] },
+        { "section": "Service Well (Closed)", "order": "6", "title" : "Service Well (Closed)", "info" : ["HR", "Wipe all bottles", "Wipe down racks", "Wipe down & wash soda gun equipment", "Cap bottles"]  },
+        { "section": "Lamps (Closed)", "order": "7", "title" : "Place Lamps on Charging station", "info" : ["HR", "Make sure the red 'charging' light is on"] },
+        { "section": "Washer (Closed)", "order": "8", "title" : "Wipe down all surfaces", "info" : ["HR", "Remove plunger to drain water", "Turn off washer", "Leave washer door open"]},
+        { "section": "Trash Cans", "order": "9", "title" : "Replace liners and store near liquor overstock" }
+      ] }
     ]
   }
 ]
